@@ -1,0 +1,207 @@
+body {
+  font-family: $fontFamily;
+
+  .categories-container {
+    margin-bottom: 40px;
+    overflow-y: auto;
+    width: 100%;
+    max-height: 228px;
+    padding: 10px;
+    max-width: 335px;
+
+    @media screen and (min-width: 1440px) {
+      max-width: 328px;
+      max-height: 472px;
+      margin-bottom: 86px;
+    }
+  }
+
+  .category-title-container {
+    background-color: $violetColor;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+
+    .category-title {
+      color: white;
+      font-size: 18px;
+
+      &-last-word {
+        color: $violetColor;
+      }
+    }
+  }
+
+  .category-header {
+    width: 382px;
+    height: 52px;
+    top: 112px;
+    left: 420px;
+
+    &-black {
+      font-family: DM Sans;
+      text-align: left;
+      color: black;
+
+      letter-spacing: -1.28px;
+      line-height: 38px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      @media screen and (min-width: 1440px) {
+        font-size: 48px;
+        line-height: 52px;
+        letter-spacing: -1.92px;
+      }
+    }
+
+    &-last-word {
+      font-family: DM Sans;
+      text-align: left;
+      letter-spacing: -1.28px;
+      line-height: 38px;
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      @media screen and (min-width: 1440px) {
+        font-size: 48px;
+        line-height: 52px;
+        letter-spacing: -1.92px;
+      }
+      color: $violetColor;
+    }
+  }
+
+  .category-item {
+    margin-bottom: 32px;
+    cursor: pointer;
+    transition: color 0.3s ease, font-weight 0.3s ease;
+
+    &:hover,
+    &:focus {
+      color: $violetColor;
+      font-weight: bold;
+    }
+  }
+
+  .category-item.active {
+    color: $violetColor;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: -2%;
+  }
+
+  .categories-container::-webkit-scrollbar {
+    width: 8px;
+    height: 167px;
+  }
+
+  .categories-container::-webkit-scrollbar-thumb {
+    background-color: #e0e0e0;
+    border-radius: 12px;
+  }
+
+  .categories-container::-webkit-scrollbar-track {
+    background-color: transparent;
+    border-radius: 12px;
+  }
+
+  .all-categories-header {
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: black;
+  }
+
+  .books-container {
+    // display: grid;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    // grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    // grid-gap: 20px;
+    transition: opacity 0.5s ease;
+
+    // @media screen and (min-width: 1440px) {
+
+    // }
+
+    .category-title-container {
+      display: none;
+      margin-bottom: 20px;
+
+      .category-title {
+        &-last-word {
+          color: $violetColor;
+        }
+      }
+    }
+  }
+
+  .book-card {
+    // padding: 10px;
+    text-align: center;
+    max-width: 335px;
+    @media screen and (min-width: 1440px) {
+      max-width: 180px;
+    }
+    // max-height: 256px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+      // margin-bottom: 10px;
+      border-radius: 8px;
+      margin: 0;
+      max-height: 485px;
+
+      @media screen and (min-width: 1440px) {
+        max-height: 256px;
+      }
+    }
+
+    .book-details {
+      margin-top: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: baseline;
+
+      h3 {
+        color: #111;
+        font-family: DM Sans;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 18px;
+        /* 112.5% */
+        letter-spacing: -0.64px;
+
+        // @media screen and (min-width: 1440px) {
+        //   text-transform: uppercase;
+        //   margin: 0;
+
+        // }
+      }
+      p {
+        color: #b4afaf;
+        font-family: DM Sans;
+        font-size: 12px;
+        font-style: italic;
+        font-weight: 400;
+        line-height: 14px;
+        /* 116.667% */
+        letter-spacing: -0.48px;
+      }
+    }
+  }
+
+  .popular-categories-container {
+    display: none;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+}
