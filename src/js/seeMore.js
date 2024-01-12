@@ -47,5 +47,3 @@ function getFormattedCategoryHeader(category) {
     <span class="category-header-black">${categoryName}</span>
     <span class="category-header-last-word">${lastWord}</span>`;
 }
-
-function openPopup(book) {}
