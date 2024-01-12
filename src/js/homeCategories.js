@@ -231,10 +231,6 @@ function createBookCard(book) {
   return card;
 }
 
-export function seeMoreButtonClick(category) {
-  const encodedCategory = encodeURIComponent(category);
-  console.log(`See More button clicked for category: ${encodedCategory}`);
-}
 function fetchBooksByCategory(category) {
   booksContainer.innerHTML = '';
 
