@@ -1,0 +1,30 @@
+<header class="page-header">
+  <div class="container page-header__container">
+    <div class="logo-and-nav">
+      <a class="logo" href="./index.html">
+        <svg class="header__icon" width="109px" height="28px">
+          <use href="./images/icons.svg#icon-logo"></use>
+        </svg>
+        <svg class="header__icon__dark" width="109px" height="28px">
+          <use href="./images/icons.svg#icon-logo-dark"></use>
+        </svg>
+      </a>
+      <include src="./partials/navigation.html"></include>
+    </div>
+    <!-- switcher -->
+    <div>
+      <input class="dark" type="checkbox" id="darkSwitch" />
+      <label class="switch" for="darkSwitch">
+        <p>DarkMode</p>
+      </label>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <button class="menu-toggle js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
+      <svg class="menu-icon" width="28" height="28">
+        <use href="./images/icons.svg#icon-hamburger"></use>
+      </svg>
+    </button>
+  </div>
+  <include src="./partials/mobile-menu.html"></include>
+</header>
