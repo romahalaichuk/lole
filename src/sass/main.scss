@@ -4,4 +4,16 @@
  */
 
 // Style dla pliku z przykładem HTML fragmentu
-@import './example';
+
+@import './utils/variables';
+@import './components/globals';
+
+@import './components/home.charities';
+@import './components/home';
+@import './components/categories';
+@import './components/header';
+@import './components/mobile-menu';
+@import './components/shopping-list';
+@import './components/modal';
+@import './components/scroll-up-button';
+@import './components/dark_mode_switcher';
