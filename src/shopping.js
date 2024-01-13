@@ -3,4 +3,3 @@ import './js/charities';
 
 import './js/charitiesExport';
 import './js/dark-mode-switch';
-import './js/shop-delete-btn';
