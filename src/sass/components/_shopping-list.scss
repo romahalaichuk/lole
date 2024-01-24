@@ -10,17 +10,17 @@
 
 @media screen and (min-width: 1440px) {
   .section-shopping-list {
-      margin-top: 75px;
+    margin-top: 75px;
   }
 }
 @media screen and (min-width: 1440px) {
-.container-shopping-list {
-  display: flex;
-  justify-content: space-between;
-}
-.container-shoplist {
-  width: 996px;
-}
+  .container-shopping-list {
+    display: flex;
+    justify-content: space-between;
+  }
+  .container-shoplist {
+    width: 996px;
+  }
 }
 .main-title-shoplist-hidden {
   position: absolute;
@@ -35,9 +35,9 @@
   overflow: hidden;
 }
 
-  // .wrap-support {
-  //   display: none;
-  // }
+// .wrap-support {
+//   display: none;
+// }
 
 @media screen and (min-width: 1440px) {
   .wrap-support {
@@ -86,8 +86,8 @@
   position: relative;
   display: block;
   max-width: 335px;
-  height: 170px;
-  padding: 14px;
+  height: 213px;
+
   align-items: center;
   gap: 20px;
   border-radius: 16px;
@@ -99,6 +99,12 @@
     max-width: 996px;
   }
 }
+.shop-container {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
 .delate-btn {
   position: absolute;
   top: 14px;
@@ -109,7 +115,7 @@
   width: 28px;
   height: 28px;
   padding: 0;
-  background-color: var(--violetColor);
+  background-color: #4f2ee8;
   border-radius: 50%;
   border-style: none;
   cursor: pointer;
@@ -126,6 +132,8 @@
     height: 34px;
     padding: 0;
     border-radius: 34px;
+    margin-right: 25px;
+    margin-top: 14px;
   }
 }
 .img-shoplist-card {
@@ -140,6 +148,39 @@
   .card-shopplist {
     max-width: 808px;
   }
+}
+.img-list {
+  max-width: 150px;
+  margin-right: 20px;
+}
+img {
+  margin: 0;
+}
+.trading-platform-icons {
+  margin-top: 20px;
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.icon-amazon {
+  width: 62px;
+  height: 19px;
+  background: url(../images/amazon.svg), no-repeat;
+  mix-blend-mode: luminosity;
+}
+.icon-barenNobel {
+  width: 33px;
+  height: 32px;
+  background: url(../images/baren-nobel.svg), no-repeat;
+  mix-blend-mode: luminosity;
+}
+.card-shoplist {
+  display: flex;
+  max-width: 450px;
+}
+.card-descrip {
+  max-width: 808px;
 }
 .card-title-shoplist {
   margin-bottom: 4px;
@@ -222,12 +263,12 @@
   display: flex;
   gap: 8px;
   align-items: center;
-  max-width: 80px;
+
   padding-bottom: 5px;
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: auto;
-  stroke: var(--black);
+  stroke: #000000;
 }
 
 .shops-list::-webkit-scrollbar {
