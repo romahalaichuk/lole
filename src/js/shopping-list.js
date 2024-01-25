@@ -91,15 +91,17 @@ function markupShoppingList(arrSelectedBooks) {
     const amazonIcon = document.querySelector(`#trading-platform-icons-${id} .icon-amazon`);
     const barenNobelIcon = document.querySelector(`#trading-platform-icons-${id} .icon-barenNobel`);
 
-    amazonIcon.addEventListener('click', event =>
-      handleShopItemClick(event, amazonLink, barenNobelLink),
-    );
-    barenNobelIcon.addEventListener('click', event =>
-      handleShopItemClick(event, amazonLink, barenNobelLink),
+    amazonIcon.addEventListener('click', createShopIconClickListener(amazonLink, barenNobelLink));
+    barenNobelIcon.addEventListener(
+      'click',
+      createShopIconClickListener(amazonLink, barenNobelLink),
     );
   });
 }
 
+function createShopIconClickListener(amazonLink, barenNobelLink) {
+  return event => handleShopItemClick(event, amazonLink, barenNobelLink);
+}
 function handleShopItemClick(event, amazonLink, barenNobelLink) {
   event.preventDefault();
 
@@ -109,7 +111,6 @@ function handleShopItemClick(event, amazonLink, barenNobelLink) {
     window.open(barenNobelLink, '_blank');
   }
 }
-
 function updatePaginationButtons() {
   const pagination = document.querySelector('.pagination');
   pagination.innerHTML = '';
@@ -129,23 +130,59 @@ function updatePaginationButtons() {
   pagination.appendChild(buttonFirst);
   pagination.appendChild(buttonPrev);
 
-  if (totalPages <= 7) {
-    for (let i = 1; i <= totalPages; i++) {
-      const button = createPaginationButton(i, i);
-      pagination.appendChild(button);
+  if (window.innerWidth < 768) {
+    const dotsButton = createPaginationButton('...', null, true);
+
+    if (totalPages > 2) {
+      if (currentPage === 1) {
+        pagination.appendChild(createPaginationButton(1, 1));
+        pagination.appendChild(createPaginationButton(2, 2));
+        pagination.appendChild(dotsButton);
+      } else if (currentPage === totalPages) {
+        pagination.appendChild(dotsButton);
+        pagination.appendChild(createPaginationButton(currentPage - 1, currentPage - 1));
+        pagination.appendChild(createPaginationButton(currentPage, currentPage));
+      } else {
+        pagination.appendChild(dotsButton);
+        pagination.appendChild(createPaginationButton(currentPage, currentPage));
+        pagination.appendChild(createPaginationButton(currentPage + 1, currentPage + 1));
+        pagination.appendChild(dotsButton);
+      }
+    } else {
+      for (let i = 1; i <= totalPages; i++) {
+        const button = createPaginationButton(i, i);
+        pagination.appendChild(button);
+      }
     }
   } else {
-    for (let i = 1; i <= 3; i++) {
-      const button = createPaginationButton(i, i);
-      pagination.appendChild(button);
-    }
-
     const dotsButton = createPaginationButton('...', null, true);
-    pagination.appendChild(dotsButton);
 
-    for (let i = totalPages - 2; i <= totalPages; i++) {
-      const button = createPaginationButton(i, i);
-      pagination.appendChild(button);
+    if (totalPages <= 3) {
+      for (let i = 1; i <= totalPages; i++) {
+        const button = createPaginationButton(i, i);
+        pagination.appendChild(button);
+      }
+    } else {
+      if (currentPage <= 2) {
+        for (let i = 1; i <= 3; i++) {
+          const button = createPaginationButton(i, i);
+          pagination.appendChild(button);
+        }
+        pagination.appendChild(dotsButton);
+      } else if (currentPage >= totalPages - 1) {
+        pagination.appendChild(dotsButton);
+        for (let i = totalPages - 2; i <= totalPages; i++) {
+          const button = createPaginationButton(i, i);
+          pagination.appendChild(button);
+        }
+      } else {
+        pagination.appendChild(dotsButton);
+        for (let i = currentPage - 1; i <= currentPage + 1; i++) {
+          const button = createPaginationButton(i, i);
+          pagination.appendChild(button);
+        }
+        pagination.appendChild(dotsButton);
+      }
     }
   }
 
@@ -154,7 +191,39 @@ function updatePaginationButtons() {
 
   pagination.appendChild(buttonNext);
   pagination.appendChild(buttonLast);
+
+  buttonNext.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      updatePaginationButtons();
+    }
+  });
+
+  buttonLast.addEventListener('click', () => {
+    if (currentPage < totalPages) {
+      currentPage = totalPages;
+      updatePaginationButtons();
+    }
+  });
+
+  buttonPrev.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage--;
+      updatePaginationButtons();
+    }
+  });
+
+  buttonFirst.addEventListener('click', () => {
+    if (currentPage > 1) {
+      currentPage = 1;
+      updatePaginationButtons();
+    }
+  });
 }
+
+window.addEventListener('resize', updatePaginationButtons);
+
+updatePaginationButtons();
 
 function createPaginationButton(label, direction, disabled = false) {
   const button = document.createElement('button');
@@ -163,8 +232,16 @@ function createPaginationButton(label, direction, disabled = false) {
   if (disabled) {
     button.disabled = true;
   } else {
-    button.onclick = () => navigateTo(direction);
+    button.onclick = () => {
+      navigateTo(direction);
+      updatePaginationButtons();
+    };
   }
+
+  if (label === currentPage) {
+    button.classList.add('active');
+  }
+
   return button;
 }
 
@@ -193,11 +270,7 @@ function navigateTo(direction) {
   }
 
   showPage(arrSelectedBooks);
-}
-
-function openBookstore(url) {
-  console.log('Opening bookstore:', url);
-  window.open(url, '_blank');
+  updatePaginationButtons();
 }
 
 function onClickDelate(event) {
@@ -266,11 +339,6 @@ function handleImageClick(event) {
   } else if (barenNobelLink) {
     window.open(barenNobelLink, '_blank');
   }
-}
-
-function handleShopItemClick(event, url) {
-  event.preventDefault();
-  window.open(url, '_blank');
 }
 
 function checkLocalStorage() {
