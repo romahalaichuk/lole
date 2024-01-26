@@ -111,6 +111,7 @@ function handleShopItemClick(event, amazonLink, barenNobelLink) {
     window.open(barenNobelLink, '_blank');
   }
 }
+
 function updatePaginationButtons() {
   const pagination = document.querySelector('.pagination');
   pagination.innerHTML = '';
