@@ -24,7 +24,6 @@
     display: flex;
     align-items: center;
   }
-
 }
 
 .logo-and-nav {
@@ -37,6 +36,7 @@
   align-self: center;
   display: flex;
   gap: 40px;
+  // display: contents;
 }
 
 .nav__item {
@@ -55,7 +55,6 @@
 //   color: $fontBlack;
 //   text-decoration: none;
 //   transition: color 0.3s ease;
-
 
 //   &--active {
 //     color: $fontBlack;
@@ -140,7 +139,6 @@
   display: none;
 }
 // menu mobilne //
-
 
 @media screen and (max-width: 768px) {
   .nav {
